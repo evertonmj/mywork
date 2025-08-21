@@ -10,6 +10,31 @@ This project lets you clock in/out, add comments, and view/manage time entries. 
 
 ---
 
+## Quick Start (Docker)
+
+For a one-command startup suitable for non-technical users:
+
+1) Install Docker Desktop (https://www.docker.com/products/docker-desktop/).  
+2) Open a terminal in this project folder.  
+3) Make the script executable once:
+```bash
+chmod +x start.sh
+```
+4) Start the app:
+```bash
+./start.sh
+```
+
+The script will:
+- Build and start LocalStack, the backend, and the frontend with Docker Compose
+- Wait until both services are ready
+- Open the app in your browser at http://localhost:3001
+
+To stop everything later:
+```bash
+docker compose down
+```
+
 ## Table of Contents
 - Architecture
 - Tech Stack
@@ -185,7 +210,7 @@ npm run dev  # runs on http://localhost:3001
 
 The Next.js dev server is configured to rewrite `/api/*` to `http://localhost:8001/*` (see `frontend/next.config.mjs`), so the frontend can call `/api/clock`, `/api/entries`, etc., without CORS issues.
 
-Note about `start.sh`: The current `start.sh` references Vite commands and is not aligned with this Next.js setup. Prefer using the manual commands above during development.
+Note about `start.sh`: The `start.sh` script now uses Docker Compose to run LocalStack, the backend, and the frontend. It is the recommended way to start the app if you have Docker Desktop installed. For manual development without Docker, use the commands above.
 
 ### 3) Verifying everything works
 - Backend: http://localhost:8001/docs should load.
@@ -242,7 +267,7 @@ mywork/
 │  │  ├─ i18n.ts         # next-intl config
 │  │  └─ middleware.ts   # locale middleware
 │  └─ ...
-├─ start.sh              # Outdated dev script (uses Vite)
+├─ start.sh              # Docker quick-start script
 └─ README.md
 ```
 

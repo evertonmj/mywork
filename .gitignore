@@ -1,5 +1,4 @@
 /.DS_Store
-/start.sh
 backend/.DS_Store
 backend/.env
 backend/__pycache__/
