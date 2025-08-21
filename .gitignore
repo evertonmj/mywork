@@ -7,3 +7,12 @@ backend/.venv
 frontend/.next
 frontend/node_modules/
 backend/package-lock.json
+backend/dist/
+backend/.env
+backend/__pycache__/
+backend/venv/
+backend/.venv
+frontend/.next
+frontend/node_modules/
+backend/build
+frontend/dist
