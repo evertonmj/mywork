@@ -1,0 +1,8 @@
+
+# Backend requirements
+fastapi
+pydantic
+boto3
+botocore
+python-dotenv
+uvicorn

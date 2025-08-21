@@ -1,0 +1,10 @@
+/.DS_Store
+/start.sh
+backend/.DS_Store
+backend/.env
+backend/__pycache__/
+backend/venv/
+backend/.venv
+frontend/.next
+frontend/node_modules/
+backend/package-lock.json
