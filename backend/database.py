@@ -9,7 +9,7 @@ def get_dynamodb_resource():
     if os.getenv("USE_LOCALSTACK", "false").lower() == "true":
         return boto3.resource(
             'dynamodb',
-            endpoint_url="http://localhost:4566",
+            endpoint_url=os.getenv("LOCALSTACK_ENDPOINT_URL", "http://localhost:4566"),
             aws_access_key_id="test",
             aws_secret_access_key="test",
             region_name="us-east-1"
