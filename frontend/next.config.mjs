@@ -2,6 +2,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const backendUrl = process.env.BACKEND_URL || 'http://localhost:8001';
 
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async rewrites() {
@@ -12,6 +13,11 @@ const nextConfig = {
       },
     ];
   },
+  experimental: {
+    outputFileTracingRoot: __dirname,
+    outputDir: 'build',
+  },
+  distDir: 'build',
 };
 
 const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
