@@ -7,6 +7,40 @@ from decimal import Decimal
 from botocore.exceptions import ClientError
 from typing import Optional
 
+class ManualTimeEntry(BaseModel):
+    start_time: datetime
+    end_time: Optional[datetime] = None
+    duration: Optional[float] = None
+    timezone: Optional[str] = None
+    comment: Optional[str] = None
+
+@app.post("/manual-entry", response_model=TimeEntry)
+def manual_entry(entry: ManualTimeEntry):
+    # Calculate duration if not provided and end_time is present
+    duration = entry.duration
+    if duration is None and entry.end_time:
+        duration = (entry.end_time - entry.start_time).total_seconds()
+    new_entry = {
+        "id": str(uuid.uuid4()),
+        "start_time": entry.start_time.isoformat(),
+        "end_time": entry.end_time.isoformat() if entry.end_time else None,
+        "duration": duration,
+        "timezone": entry.timezone,
+        "comment": entry.comment
+    }
+    # Filter out None values before insertion
+    new_entry_cleaned = {k: v for k, v in new_entry.items() if v is not None}
+    time_entries_table.put_item(Item=new_entry_cleaned)
+    return new_entry_cleaned
+from fastapi import FastAPI, HTTPException, Body
+from models import TimeEntry
+from database import time_entries_table
+import uuid
+from datetime import datetime, timezone
+from decimal import Decimal
+from botocore.exceptions import ClientError
+from typing import Optional
+
 app = FastAPI()
 
 @app.post("/clock", response_model=TimeEntry)

@@ -16,3 +16,4 @@ frontend/.next
 frontend/node_modules/
 backend/build
 frontend/dist
+node_modules

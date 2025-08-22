@@ -1,6 +1,7 @@
 'use client';
 
 import Clock from '../../components/Clock';
+import ManualEntryForm from '../../components/ManualEntryForm';
 import { useTranslations } from 'next-intl';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -25,7 +26,9 @@ export default function Home() {
         <Clock />
       </Paper>
 
-      
+      <Paper sx={{ p: 3, mb: 3 }}>
+        <ManualEntryForm />
+      </Paper>
     </Box>
   );
 }
